@@ -472,3 +472,74 @@ nav ul {
     justify-items: center;
     vertical-align: center;
 }
+
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+    .pet-grid {
+        grid-template-columns: 4fr 3fr;
+    }
+    .pet-name {
+        grid-column: 1 / 4;
+        border: none;
+        background-color: whitesmoke;
+    }
+    .pet-main {
+        grid-area: 2 / 1 / 5 / 2;
+    }
+    .pet-likes {
+        grid-area: 2 / 2 / 3 / 3;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    .pet-media-title {
+        grid-area: 3 / 2 / 4 / 3;
+    }
+    .pet-media {
+        grid-area: 4 / 2 / 6 / 3;
+        max-height: calc(2 * var(--row-height));
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .pet-blurb {
+        grid-area: 5 / 1 / 6 / 2;
+        overflow: scroll; 
+        max-height: var(--row-height);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+    }
+    .recipe-grid {
+        grid-template-columns: 4fr 3fr;
+    }
+    .recipe-main {
+        grid-area: 2 / 1 / 4 / 2;
+    }
+    .recipe-details {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+    .recipe-blurb {
+        grid-area: 3 / 2 / 4 / 3;
+    }
+    .recipe-ingredients {
+        grid-area: 4 / 1 / 5 / 2; 
+        max-height: 250px;
+        overflow: scroll;
+    }
+    .recipe-steps {
+        grid-area: 4 / 2 / 5 / 3; 
+        max-height: 250px;
+        overflow: scroll;
+    }
+    .recipe-media {
+        grid-area: 5 / 1 / 6 / 3;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+    }
+    .recipe-media h3 {
+        grid-area: 1 / 1 / 2 / 4;
+    }
+}
