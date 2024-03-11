@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="css/html5reset.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Pets</title>
@@ -28,6 +29,22 @@
         <a href = "#item4">Sage</a>
         <a href = "#item5">Smoothie</a>
     </aside>
+    <div class="treat-container" id="treatContainer">
+        <div class="treat-content">
+            <p class="give-treat-text">Give a treat!</p>
+            <img src="images/treat_icon.png" alt="Treat icon" class="treat-icon">
+            <button onclick="info_click()">What is this?</button>
+        </div>
+    </div>
+    <div class="info-page-container">
+        <div>Giving Treats</div>
+        <p>Click and drag the treat icon from the container to a pet on the page to give them a treat!</p>
+        <div class="close-container">
+            <button onclick="info_close()" id="close-button">
+            Close
+            </button>
+        </div>
+    </div>
     <main id = "main">
         <br>
         <!-- First Pet -->
@@ -208,5 +225,62 @@
             </div>
         </div>
     </main>
+    <script>
+        // Info button click event
+        function info_click() {
+            $('.info-page-container').show();
+            console.log("Opened info page.");
+        }
+        function info_close() {
+            $('.info-page-container').hide();
+            console.log("Closed info page. Back to pets page.");
+        }
+       
+        $(document).ready(function() {
+            const treatIcon = document.querySelector(".treat-icon");
+
+            let draggedElement = null;
+
+            treatIcon.addEventListener("touchstart", function(event) {
+                draggedElement = this.cloneNode(true);
+                draggedElement.classList.add("dragged-treat");
+                draggedElement.style.position = "absolute";
+                draggedElement.style.left = (event.touches[0].clientX - this.offsetLeft) + "px";
+                draggedElement.style.top = (event.touches[0].clientY - this.offsetTop) + "px";
+                document.body.appendChild(draggedElement);
+            });
+
+            document.addEventListener("touchmove", function(event) {
+                event.preventDefault();
+                if (draggedElement) {
+                    draggedElement.style.left = (event.touches[0].clientX - draggedElement.offsetWidth / 2) + "px";
+                    draggedElement.style.top = (event.touches[0].clientY - draggedElement.offsetHeight / 2) + "px";
+                }
+            });
+
+            document.addEventListener("touchend", function(event) {
+                if (draggedElement) {
+                    const touchX = event.changedTouches[0].clientX;
+                    const touchY = event.changedTouches[0].clientY;
+
+                    const heartImage = document.createElement("img");
+                    heartImage.src = "images/heart.gif";
+                    heartImage.alt = "Heart";
+                    heartImage.classList.add("heart-gif");
+                    // Position the heart image in the middle of the page
+                    heartImage.style.left = (touchX - heartImage.offsetWidth / 2) + "px";
+                    heartImage.style.top = (touchY - heartImage.offsetHeight / 2) + "px";
+                    document.body.appendChild(heartImage);
+
+                    setTimeout(() => {
+                        heartImage.remove();
+                    }, 1500);
+
+                    draggedElement.remove();
+                    draggedElement = null;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -85,6 +85,7 @@ header nav {
     font-weight: bold;
     font-style: italic;
     font-size: larger;
+    text-decoration: underline;
 }
 
 a {
@@ -147,6 +148,11 @@ nav ul {
     padding: 5px 5px 5px 5px;
 }
 
+.table-of-contents a:hover {
+    color: blue;
+    font-weight: bold;
+}
+
 .table-of-contents-category {
     font-size: 18px;
     text-align: center;
@@ -188,6 +194,7 @@ nav ul {
 
 .pet-main img {
     max-width: 100%;
+    z-index: 1;
     height: auto;
     aspect-ratio: 1/1;
     overflow: hidden;
@@ -484,6 +491,7 @@ nav ul {
         grid-column: 1 / 4;
         border: none;
         background-color: whitesmoke;
+        font-weight: bold;
     }
     .pet-main {
         grid-area: 2 / 1 / 5 / 2;
@@ -500,8 +508,6 @@ nav ul {
         grid-area: 4 / 2 / 6 / 3;
         max-height: calc(2 * var(--row-height));
         overflow-y: auto;
-        display: flex;
-        flex-direction: column;
     }
     .pet-blurb {
         grid-area: 5 / 1 / 6 / 2;
@@ -523,6 +529,9 @@ nav ul {
     }
     .recipe-blurb {
         grid-area: 3 / 2 / 4 / 3;
+        text-align: center;
+        justify-self: center;
+        align-self: center;
     }
     .recipe-ingredients {
         grid-area: 4 / 1 / 5 / 2; 
@@ -542,4 +551,70 @@ nav ul {
     .recipe-media h3 {
         grid-area: 1 / 1 / 2 / 4;
     }
+    .travel-grid {
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 5px;
+    }
+    .travel-name, .travel-main, .travel-location, .travel-blurbs, .travel-media-title {
+        grid-area: auto / 1 / span 1 / span 4;
+    }
+    .travel-media {
+        grid-area: 6 / auto / span 1 / span 1;
+    }
+    .travel-caption {
+        grid-area: 7 / auto / span 1 / span 1;
+    }
+    .treat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 1000;
+        text-align: center;
+    }  
+    .treat-content {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .treat-icon {
+        width: 100px;
+        z-index: 9999;
+        height: 100px;
+        margin-right: 5px;
+        margin-top: 10px;
+        vertical-align: middle;
+        border: none;
+    }
+    .info-page-container {
+        display: none;
+        z-index: 999;
+        width: 500;
+        height: 750;
+        background-color: white;
+        border: 6px;
+        border-style: groove;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .close-container {
+        margin-top: 20px;
+    }
+    .give-treat-text {
+        display: inline;
+        vertical-align: middle;
+    }
+    .info-page {
+        text-decoration: underline;
+        color: blue;
+    }
+    .heart-gif {
+        position: absolute;
+        z-index: 9999;
+    }
+
 }
